@@ -12,14 +12,14 @@ type Status = "idle" | "loading" | "success" | "error";
 
 const inputStyle: React.CSSProperties = {
   width: "100%",
-  background: "oklch(0.09 0.012 260)",
-  border: "1px solid oklch(0.22 0.02 260 / 0.6)",
+  background: "#ffffff",
+  border: "1px solid #e4e4e7",
   borderRadius: "10px",
   padding: "10px 14px",
   fontSize: "14px",
-  color: "oklch(0.92 0.01 260)",
+  color: "#09090b",
   outline: "none",
-  transition: "border-color 0.15s",
+  transition: "border-color 0.15s, box-shadow 0.15s",
   fontFamily: "var(--font-inter), sans-serif",
 };
 
@@ -31,27 +31,19 @@ export function ContactModal({ open, onClose }: Props) {
   const [focusedField, setFocusedField] = useState<string | null>(null);
   const emailRef = useRef<HTMLInputElement>(null);
 
-  // Reset form when modal opens
   useEffect(() => {
     if (open) {
-      setEmail("");
-      setWebsite("");
-      setDescription("");
-      setStatus("idle");
+      setEmail(""); setWebsite(""); setDescription(""); setStatus("idle");
       setTimeout(() => emailRef.current?.focus(), 100);
     }
   }, [open]);
 
-  // Close on Escape
   useEffect(() => {
-    const handler = (e: KeyboardEvent) => {
-      if (e.key === "Escape" && open) onClose();
-    };
+    const handler = (e: KeyboardEvent) => { if (e.key === "Escape" && open) onClose(); };
     window.addEventListener("keydown", handler);
     return () => window.removeEventListener("keydown", handler);
   }, [open, onClose]);
 
-  // Lock body scroll
   useEffect(() => {
     document.body.style.overflow = open ? "hidden" : "";
     return () => { document.body.style.overflow = ""; };
@@ -72,14 +64,13 @@ export function ContactModal({ open, onClose }: Props) {
     }
   }
 
-  const focusedBorder = "1px solid oklch(0.78 0.16 195 / 0.7)";
-  const focusedShadow = "0 0 0 3px oklch(0.78 0.16 195 / 0.12)";
+  const focusedBorder = "1px solid #09090b";
+  const focusedShadow = "0 0 0 3px rgba(9,9,11,0.08)";
 
   return (
     <AnimatePresence>
       {open && (
         <>
-          {/* Backdrop */}
           <motion.div
             key="backdrop"
             initial={{ opacity: 0 }}
@@ -88,10 +79,9 @@ export function ContactModal({ open, onClose }: Props) {
             transition={{ duration: 0.2 }}
             onClick={onClose}
             className="fixed inset-0 z-50"
-            style={{ background: "oklch(0.04 0.01 260 / 0.80)", backdropFilter: "blur(8px)" }}
+            style={{ background: "rgba(0,0,0,0.35)", backdropFilter: "blur(4px)" }}
           />
 
-          {/* Modal panel */}
           <motion.div
             key="modal"
             initial={{ opacity: 0, scale: 0.95, y: 16 }}
@@ -103,99 +93,51 @@ export function ContactModal({ open, onClose }: Props) {
             <div
               className="w-full max-w-md pointer-events-auto rounded-2xl p-7 relative"
               style={{
-                background: "oklch(0.11 0.015 260)",
-                border: "1px solid oklch(0.24 0.02 260 / 0.6)",
-                boxShadow:
-                  "0 24px 80px oklch(0.04 0.01 260 / 0.7), 0 0 0 1px oklch(0.78 0.16 195 / 0.08)",
+                background: "#ffffff",
+                border: "1px solid #e4e4e7",
+                boxShadow: "0 24px 80px rgba(0,0,0,0.18), 0 4px 16px rgba(0,0,0,0.06)",
               }}
             >
-              {/* Close button */}
               <button
                 onClick={onClose}
-                className="absolute top-4 right-4 w-8 h-8 flex items-center justify-center rounded-lg transition-colors"
-                style={{
-                  background: "oklch(0.18 0.015 260 / 0.0)",
-                  color: "oklch(0.45 0.02 260)",
-                }}
+                className="absolute top-4 right-4 w-8 h-8 flex items-center justify-center rounded-lg transition-colors hover:bg-zinc-100"
+                style={{ color: "#9ca3af" }}
                 aria-label="Close"
               >
                 <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-                  <path
-                    d="M2 2l10 10M12 2L2 12"
-                    stroke="currentColor"
-                    strokeWidth="1.5"
-                    strokeLinecap="round"
-                  />
+                  <path d="M2 2l10 10M12 2L2 12" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
                 </svg>
               </button>
 
-              {/* Header */}
               <div className="mb-6">
                 <div className="flex items-center gap-2 mb-3">
-                  <span className="text-lg font-bold" style={{ color: "oklch(0.78 0.16 195)" }}>
-                    ◈
-                  </span>
-                  <span
-                    className="text-xs font-medium tracking-wide"
-                    style={{ color: "oklch(0.60 0.02 260)" }}
-                  >
-                    GHOST MONITOR
-                  </span>
+                  <span className="text-lg font-bold" style={{ color: "#09090b" }}>◈</span>
+                  <span className="text-xs font-medium tracking-wide" style={{ color: "#9ca3af" }}>GHOST MONITOR</span>
                 </div>
-                <h2
-                  className="text-xl font-bold tracking-tight"
-                  style={{ color: "oklch(0.97 0.005 260)" }}
-                >
-                  Get in touch
-                </h2>
-                <p className="mt-1 text-sm" style={{ color: "oklch(0.52 0.02 260)" }}>
+                <h2 className="text-xl font-bold tracking-tight" style={{ color: "#09090b" }}>Get in touch</h2>
+                <p className="mt-1 text-sm" style={{ color: "#6b7280" }}>
                   Tell us about your site and we&rsquo;ll set up your custom dashboard.
                 </p>
               </div>
 
               {status === "success" ? (
-                <motion.div
-                  initial={{ opacity: 0, scale: 0.96 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  className="text-center py-8"
-                >
+                <motion.div initial={{ opacity: 0, scale: 0.96 }} animate={{ opacity: 1, scale: 1 }} className="text-center py-8">
                   <div
                     className="inline-flex items-center justify-center w-14 h-14 rounded-2xl mb-4"
-                    style={{
-                      background: "oklch(0.72 0.16 145 / 0.12)",
-                      border: "1px solid oklch(0.72 0.16 145 / 0.25)",
-                    }}
+                    style={{ background: "#f0fdf4", border: "1px solid #bbf7d0" }}
                   >
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-                      <path
-                        d="M5 13l4 4L19 7"
-                        stroke="oklch(0.72 0.16 145)"
-                        strokeWidth="2"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      />
+                      <path d="M5 13l4 4L19 7" stroke="#16a34a" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                     </svg>
                   </div>
-                  <p
-                    className="text-base font-semibold mb-1"
-                    style={{ color: "oklch(0.97 0.005 260)" }}
-                  >
-                    Message sent!
-                  </p>
-                  <p className="text-sm" style={{ color: "oklch(0.52 0.02 260)" }}>
-                    Our team will reach out within 48 hours.
-                  </p>
+                  <p className="text-base font-semibold mb-1" style={{ color: "#09090b" }}>Message sent!</p>
+                  <p className="text-sm" style={{ color: "#6b7280" }}>Our team will reach out within 48 hours.</p>
                 </motion.div>
               ) : (
                 <form onSubmit={handleSubmit} className="space-y-4">
-                  {/* Email */}
                   <div>
-                    <label
-                      htmlFor="cm-email"
-                      className="block text-xs font-medium mb-1.5"
-                      style={{ color: "oklch(0.60 0.02 260)" }}
-                    >
-                      Email address <span style={{ color: "oklch(0.78 0.16 195)" }}>*</span>
+                    <label htmlFor="cm-email" className="block text-xs font-medium mb-1.5" style={{ color: "#52525b" }}>
+                      Email address <span style={{ color: "#09090b" }}>*</span>
                     </label>
                     <input
                       ref={emailRef}
@@ -207,22 +149,13 @@ export function ContactModal({ open, onClose }: Props) {
                       onChange={(e) => setEmail(e.target.value)}
                       onFocus={() => setFocusedField("email")}
                       onBlur={() => setFocusedField(null)}
-                      style={{
-                        ...inputStyle,
-                        border: focusedField === "email" ? focusedBorder : inputStyle.border,
-                        boxShadow: focusedField === "email" ? focusedShadow : "none",
-                      }}
+                      style={{ ...inputStyle, border: focusedField === "email" ? focusedBorder : inputStyle.border, boxShadow: focusedField === "email" ? focusedShadow : "none" }}
                     />
                   </div>
 
-                  {/* Website */}
                   <div>
-                    <label
-                      htmlFor="cm-website"
-                      className="block text-xs font-medium mb-1.5"
-                      style={{ color: "oklch(0.60 0.02 260)" }}
-                    >
-                      Website URL <span style={{ color: "oklch(0.78 0.16 195)" }}>*</span>
+                    <label htmlFor="cm-website" className="block text-xs font-medium mb-1.5" style={{ color: "#52525b" }}>
+                      Website URL <span style={{ color: "#09090b" }}>*</span>
                     </label>
                     <input
                       id="cm-website"
@@ -233,23 +166,14 @@ export function ContactModal({ open, onClose }: Props) {
                       onChange={(e) => setWebsite(e.target.value)}
                       onFocus={() => setFocusedField("website")}
                       onBlur={() => setFocusedField(null)}
-                      style={{
-                        ...inputStyle,
-                        border: focusedField === "website" ? focusedBorder : inputStyle.border,
-                        boxShadow: focusedField === "website" ? focusedShadow : "none",
-                      }}
+                      style={{ ...inputStyle, border: focusedField === "website" ? focusedBorder : inputStyle.border, boxShadow: focusedField === "website" ? focusedShadow : "none" }}
                     />
                   </div>
 
-                  {/* Description */}
                   <div>
-                    <label
-                      htmlFor="cm-description"
-                      className="block text-xs font-medium mb-1.5"
-                      style={{ color: "oklch(0.60 0.02 260)" }}
-                    >
+                    <label htmlFor="cm-description" className="block text-xs font-medium mb-1.5" style={{ color: "#52525b" }}>
                       What do you need?{" "}
-                      <span style={{ color: "oklch(0.38 0.015 260)" }}>(optional)</span>
+                      <span style={{ color: "#9ca3af" }}>(optional)</span>
                     </label>
                     <textarea
                       id="cm-description"
@@ -260,18 +184,15 @@ export function ContactModal({ open, onClose }: Props) {
                       onFocus={() => setFocusedField("description")}
                       onBlur={() => setFocusedField(null)}
                       style={{
-                        ...inputStyle,
-                        resize: "vertical",
-                        minHeight: "80px",
-                        border:
-                          focusedField === "description" ? focusedBorder : inputStyle.border,
+                        ...inputStyle, resize: "vertical", minHeight: "80px",
+                        border: focusedField === "description" ? focusedBorder : inputStyle.border,
                         boxShadow: focusedField === "description" ? focusedShadow : "none",
                       }}
                     />
                   </div>
 
                   {status === "error" && (
-                    <p className="text-xs" style={{ color: "oklch(0.70 0.18 25)" }}>
+                    <p className="text-xs" style={{ color: "#dc2626" }}>
                       Something went wrong. Please try again or email us directly.
                     </p>
                   )}
@@ -281,41 +202,17 @@ export function ContactModal({ open, onClose }: Props) {
                     disabled={status === "loading"}
                     className="w-full flex items-center justify-center gap-2 py-2.5 rounded-xl text-sm font-semibold transition-all duration-150"
                     style={{
-                      background:
-                        status === "loading"
-                          ? "oklch(0.65 0.14 195)"
-                          : "oklch(0.78 0.16 195)",
-                      color: "oklch(0.08 0.015 260)",
-                      boxShadow:
-                        status === "loading"
-                          ? "none"
-                          : "0 0 20px oklch(0.78 0.20 195 / 0.30)",
+                      background: status === "loading" ? "#52525b" : "#09090b",
+                      color: "#ffffff",
+                      boxShadow: status === "loading" ? "none" : "0 4px 14px rgba(0,0,0,0.18)",
                       cursor: status === "loading" ? "not-allowed" : "pointer",
                     }}
                   >
                     {status === "loading" ? (
                       <>
-                        <svg
-                          className="animate-spin"
-                          width="14"
-                          height="14"
-                          viewBox="0 0 14 14"
-                          fill="none"
-                        >
-                          <circle
-                            cx="7"
-                            cy="7"
-                            r="5"
-                            stroke="currentColor"
-                            strokeOpacity="0.3"
-                            strokeWidth="2"
-                          />
-                          <path
-                            d="M12 7a5 5 0 0 0-5-5"
-                            stroke="currentColor"
-                            strokeWidth="2"
-                            strokeLinecap="round"
-                          />
+                        <svg className="animate-spin" width="14" height="14" viewBox="0 0 14 14" fill="none">
+                          <circle cx="7" cy="7" r="5" stroke="currentColor" strokeOpacity="0.3" strokeWidth="2" />
+                          <path d="M12 7a5 5 0 0 0-5-5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
                         </svg>
                         Sending…
                       </>
@@ -323,13 +220,7 @@ export function ContactModal({ open, onClose }: Props) {
                       <>
                         Send Message
                         <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-                          <path
-                            d="M2 7h10M8 3l4 4-4 4"
-                            stroke="currentColor"
-                            strokeWidth="1.5"
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                          />
+                          <path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
                         </svg>
                       </>
                     )}

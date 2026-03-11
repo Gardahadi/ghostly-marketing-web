@@ -29,16 +29,10 @@ const features = [
 
 export function Features() {
   return (
-    <section className="relative py-32 overflow-hidden">
-      {/* Section background */}
-      <div
-        className="absolute inset-0 pointer-events-none"
-        aria-hidden
-        style={{
-          background:
-            "radial-gradient(ellipse at 50% 0%, oklch(0.78 0.16 195 / 0.04) 0%, transparent 60%)",
-        }}
-      />
+    <section className="relative py-32 overflow-hidden" style={{ background: "#f8f8f9" }}>
+      {/* Top/bottom edge fade to white */}
+      <div className="absolute top-0 left-0 right-0 h-16 pointer-events-none" style={{ background: "linear-gradient(to bottom, #ffffff, transparent)" }} aria-hidden />
+      <div className="absolute bottom-0 left-0 right-0 h-16 pointer-events-none" style={{ background: "linear-gradient(to top, #ffffff, transparent)" }} aria-hidden />
 
       <div className="max-w-6xl mx-auto px-6">
         {/* Header */}
@@ -51,21 +45,14 @@ export function Features() {
         >
           <div
             className="inline-flex items-center gap-2 rounded-full px-3 py-1 mb-4 text-xs font-medium"
-            style={{
-              background: "oklch(0.78 0.16 195 / 0.08)",
-              border: "1px solid oklch(0.78 0.16 195 / 0.20)",
-              color: "oklch(0.75 0.14 195)",
-            }}
+            style={{ background: "#f4f4f5", border: "1px solid #e4e4e7", color: "#52525b" }}
           >
             Why Ghost Monitor
           </div>
-          <h2
-            className="text-4xl font-bold tracking-tight"
-            style={{ color: "oklch(0.97 0.005 260)" }}
-          >
+          <h2 className="text-4xl font-bold tracking-tight" style={{ color: "#09090b" }}>
             The analytics layer your stack is missing
           </h2>
-          <p className="mt-4 text-lg max-w-2xl mx-auto" style={{ color: "oklch(0.55 0.02 260)" }}>
+          <p className="mt-4 text-lg max-w-2xl mx-auto" style={{ color: "#6b7280" }}>
             As AI reshapes how people discover content, a new category of traffic
             is invisible to Google Analytics, Plausible, and every other tool you
             use today.
@@ -81,59 +68,30 @@ export function Features() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-80px" }}
               transition={{ duration: 0.7 }}
-              className={`grid lg:grid-cols-2 gap-12 items-center ${
-                i % 2 === 1 ? "lg:grid-flow-col-dense" : ""
-              }`}
+              className={`grid lg:grid-cols-2 gap-12 items-center ${i % 2 === 1 ? "lg:grid-flow-col-dense" : ""}`}
             >
               {/* Copy */}
               <div className={i % 2 === 1 ? "lg:col-start-2" : ""}>
-                <div
-                  className="text-xs font-bold font-mono mb-4 tracking-widest"
-                  style={{ color: "oklch(0.78 0.16 195 / 0.60)" }}
-                >
+                <div className="text-xs font-bold font-mono mb-4 tracking-widest" style={{ color: "#d4d4d8" }}>
                   {feature.number}
                 </div>
-                <h3
-                  className="text-3xl font-bold tracking-tight mb-4"
-                  style={{ color: "oklch(0.97 0.005 260)" }}
-                >
+                <h3 className="text-3xl font-bold tracking-tight mb-4" style={{ color: "#09090b" }}>
                   {feature.title}
                 </h3>
-                <p className="text-base leading-relaxed" style={{ color: "oklch(0.57 0.02 260)" }}>
+                <p className="text-base leading-relaxed" style={{ color: "#6b7280" }}>
                   {feature.description}
                 </p>
-                <div
-                  className="mt-6 inline-flex items-center gap-2 text-sm font-medium"
-                  style={{ color: "oklch(0.78 0.16 195)" }}
-                >
+                <div className="mt-6 inline-flex items-center gap-2 text-sm font-medium" style={{ color: "#09090b" }}>
                   <span>Included in every plan</span>
                   <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden>
-                    <path
-                      d="M2 7h10M8 3l4 4-4 4"
-                      stroke="currentColor"
-                      strokeWidth="1.5"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    />
+                    <path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
                   </svg>
                 </div>
               </div>
 
               {/* Mockup */}
               <div className={i % 2 === 1 ? "lg:col-start-1 lg:row-start-1" : ""}>
-                <motion.div
-                  whileHover={{ y: -4, scale: 1.01 }}
-                  transition={{ duration: 0.3 }}
-                  className="relative"
-                >
-                  <div
-                    className="absolute -inset-4 rounded-2xl pointer-events-none"
-                    aria-hidden
-                    style={{
-                      background:
-                        "radial-gradient(ellipse at center, oklch(0.78 0.16 195 / 0.06) 0%, transparent 70%)",
-                    }}
-                  />
+                <motion.div whileHover={{ y: -4, scale: 1.01 }} transition={{ duration: 0.3 }}>
                   {feature.mockup}
                 </motion.div>
               </div>

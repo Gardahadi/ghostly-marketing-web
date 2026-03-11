@@ -4,26 +4,18 @@
   --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
   --font-mono: var(--font-mono), ui-monospace, monospace;
 
-  --color-background: oklch(0.08 0.015 260);
-  --color-surface: oklch(0.11 0.015 260);
-  --color-surface-2: oklch(0.14 0.015 260);
-  --color-border: oklch(0.25 0.02 260 / 0.5);
-  --color-border-subtle: oklch(0.20 0.015 260 / 0.35);
+  --color-background: #ffffff;
+  --color-surface: #f8f8f9;
+  --color-surface-2: #f0f0f1;
+  --color-border: #e4e4e7;
+  --color-border-subtle: #ebebec;
 
-  --color-text: oklch(0.95 0.01 260);
-  --color-text-muted: oklch(0.55 0.02 260);
-  --color-text-dim: oklch(0.40 0.015 260);
+  --color-text: #09090b;
+  --color-text-muted: #6b7280;
+  --color-text-dim: #9ca3af;
 
-  --color-teal: oklch(0.78 0.16 195);
-  --color-teal-bright: oklch(0.85 0.18 190);
-  --color-teal-dim: oklch(0.78 0.16 195 / 0.12);
-  --color-teal-glow: oklch(0.78 0.20 195 / 0.30);
-
-  --color-openai: oklch(0.80 0.12 85);
-  --color-anthropic: oklch(0.70 0.14 185);
-  --color-google: oklch(0.55 0.12 240);
-  --color-perplexity: oklch(0.82 0.18 140);
-  --color-meta: oklch(0.60 0.15 250);
+  --color-accent: #09090b;
+  --color-accent-hover: #27272a;
 }
 
 * {
@@ -46,33 +38,13 @@ body {
   font-family: var(--font-mono);
 }
 
-/* Glow effects */
-.glow-teal {
-  box-shadow: 0 0 20px var(--color-teal-glow), 0 0 60px oklch(0.78 0.20 195 / 0.10);
-}
-
-.glow-teal-text {
-  text-shadow: 0 0 20px var(--color-teal-glow);
-}
-
-/* Subtle noise texture overlay */
-.noise::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
-  pointer-events: none;
-  border-radius: inherit;
-}
-
-/* Scrollbar styling */
 ::-webkit-scrollbar {
   width: 6px;
 }
 ::-webkit-scrollbar-track {
-  background: var(--color-background);
+  background: #f4f4f5;
 }
 ::-webkit-scrollbar-thumb {
-  background: var(--color-border);
+  background: #d4d4d8;
   border-radius: 3px;
 }
