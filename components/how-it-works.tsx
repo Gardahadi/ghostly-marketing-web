@@ -20,7 +20,7 @@ const steps = [
   },
 ];
 
-export function HowItWorks() {
+export function HowItWorks({ onContact }: { onContact: () => void }) {
   return (
     <section
       className="relative py-32"
@@ -126,8 +126,8 @@ export function HowItWorks() {
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.4 }}
             >
-              <a
-                href="mailto:hello@ghostly.dev"
+              <button
+                onClick={onContact}
                 className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-semibold transition-all duration-200 hover:scale-[1.02] active:scale-[0.98]"
                 style={{
                   background: "oklch(0.78 0.16 195)",
@@ -146,7 +146,7 @@ export function HowItWorks() {
                     strokeLinejoin="round"
                   />
                 </svg>
-              </a>
+              </button>
             </motion.div>
           </div>
 

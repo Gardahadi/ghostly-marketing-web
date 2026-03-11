@@ -2,7 +2,7 @@
 
 import { motion } from "motion/react";
 
-export function CtaSection() {
+export function CtaSection({ onContact }: { onContact: () => void }) {
   return (
     <section className="relative py-32 overflow-hidden">
       {/* Background glow */}
@@ -61,8 +61,8 @@ export function CtaSection() {
           </p>
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <motion.a
-              href="mailto:hello@ghostly.dev"
+            <motion.button
+              onClick={onContact}
               whileHover={{ scale: 1.03 }}
               whileTap={{ scale: 0.97 }}
               className="inline-flex items-center gap-2 px-8 py-3.5 rounded-xl text-sm font-semibold"
@@ -83,10 +83,7 @@ export function CtaSection() {
                   strokeLinejoin="round"
                 />
               </svg>
-            </motion.a>
-            <span className="text-sm" style={{ color: "oklch(0.42 0.015 260)" }}>
-              hello@ghostly.dev
-            </span>
+            </motion.button>
           </div>
 
           {/* Trust bar */}

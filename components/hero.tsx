@@ -3,7 +3,7 @@
 import { motion } from "motion/react";
 import { OverviewMockup } from "./mockups";
 
-export function Hero() {
+export function Hero({ onContact }: { onContact: () => void }) {
   return (
     <section className="relative min-h-screen flex items-center overflow-hidden pt-14">
       {/* Ambient background gradients */}
@@ -83,10 +83,10 @@ export function Hero() {
                   textShadow: "0 0 40px oklch(0.78 0.20 195 / 0.35)",
                 }}
               >
-                Ghost Traffic.
+                Ghosts.
               </span>
               <br />
-              It&rsquo;s Time to Track&nbsp;It.
+              We&rsquo;re Here to Track&nbsp;them.
             </motion.h1>
 
             <motion.p
@@ -107,9 +107,8 @@ export function Hero() {
               transition={{ duration: 0.6, delay: 0.3 }}
               className="flex items-center gap-4"
             >
-              <a
-                id="contact"
-                href="mailto:hello@ghostly.dev"
+              <button
+                onClick={onContact}
                 className="inline-flex items-center gap-2 px-6 py-3 rounded-xl text-sm font-semibold transition-all duration-200 hover:scale-[1.02] active:scale-[0.98]"
                 style={{
                   background: "oklch(0.78 0.16 195)",
@@ -134,7 +133,7 @@ export function Hero() {
                     strokeLinejoin="round"
                   />
                 </svg>
-              </a>
+              </button>
               <span className="text-xs" style={{ color: "oklch(0.42 0.015 260)" }}>
                 No setup fees &middot; Custom onboarding
               </span>

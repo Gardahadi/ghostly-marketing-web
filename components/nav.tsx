@@ -2,7 +2,7 @@
 
 import { motion } from "motion/react";
 
-export function Nav() {
+export function Nav({ onContact }: { onContact: () => void }) {
   return (
     <motion.header
       initial={{ opacity: 0, y: -16 }}
@@ -38,8 +38,8 @@ export function Nav() {
             Ghost Monitor
           </span>
         </div>
-        <a
-          href="#contact"
+        <button
+          onClick={onContact}
           className="text-sm font-medium px-4 py-1.5 rounded-lg transition-all"
           style={{
             background: "oklch(0.78 0.16 195 / 0.12)",
@@ -48,7 +48,7 @@ export function Nav() {
           }}
         >
           Contact Us
-        </a>
+        </button>
       </div>
     </motion.header>
   );
