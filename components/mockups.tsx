@@ -19,19 +19,19 @@ export function OverviewMockup() {
     { openai: 55, anthropic: 30, google: 20, perplexity: 12, meta: 6 },
     { openai: 90, anthropic: 25, google: 18, perplexity: 14, meta: 7 },
     { openai: 78, anthropic: 28, google: 22, perplexity: 9, meta: 5 },
-    { openai: 95, anthropic: 35, google: 24, perplexity: 16, meta: 8 },
-    { openai: 88, anthropic: 32, google: 21, perplexity: 13, meta: 6 },
+    { openai: 65, anthropic: 35, google: 24, perplexity: 16, meta: 8 },
+    { openai: 68, anthropic: 32, google: 21, perplexity: 13, meta: 6 },
   ];
   const days = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
   const maxH = 120;
   const scale = maxH / 150;
 
   const platforms = [
-    { name: "OpenAI",      color: "#09090b", key: "openai"     },
-    { name: "Anthropic",   color: "#3f3f46", key: "anthropic"  },
-    { name: "Google",      color: "#71717a", key: "google"     },
-    { name: "Perplexity",  color: "#a1a1aa", key: "perplexity" },
-    { name: "Meta",        color: "#d4d4d8", key: "meta"       },
+    { name: "OpenAI",      color: "#78827a", key: "openai"     },
+    { name: "Anthropic",   color: "#d3860b", key: "anthropic"  },
+    { name: "Google",      color: "#1f72e6", key: "google"     },
+    { name: "Perplexity",  color: "#092f22", key: "perplexity" },
+    { name: "Meta",        color: "#11b4ff", key: "meta"       },
   ] as const;
 
   return (

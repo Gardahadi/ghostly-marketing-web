@@ -48,7 +48,7 @@ export function Hero({ onContact }: { onContact: () => void }) {
               className="text-5xl lg:text-6xl font-bold tracking-tight leading-[1.08] mb-6"
               style={{ color: "#09090b" }}
             >
-              Your Website Has{" "}
+              If Your Website Has{" "}
               <span style={{ color: "#09090b", borderBottom: "3px solid #09090b" }}>Ghosts.</span>
               <br />
               We&rsquo;re Here to Track&nbsp;them.
@@ -61,7 +61,7 @@ export function Hero({ onContact }: { onContact: () => void }) {
               className="text-lg leading-relaxed mb-10"
               style={{ color: "#6b7280" }}
             >
-              Ghost Monitor reveals how AI crawlers, LLMs, and bots are actually
+              Ghostly reveals how AI crawlers, LLMs, and bots are actually
               interacting with your site — real data that traditional analytics
               misses entirely. Stop flying blind in the age of AI&nbsp;search.
             </motion.p>
@@ -91,7 +91,7 @@ export function Hero({ onContact }: { onContact: () => void }) {
               </span>
             </motion.div>
 
-            {/* Social proof */}
+            {/* Social proof
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -109,7 +109,7 @@ export function Hero({ onContact }: { onContact: () => void }) {
                   <div className="text-xs" style={{ color: "#9ca3af" }}>{label}</div>
                 </div>
               ))}
-            </motion.div>
+            </motion.div> */}
           </div>
 
           {/* Right — dashboard mockup */}
